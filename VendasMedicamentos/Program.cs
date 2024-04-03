@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using VendasMedicamentos.Context;
+
 namespace VendasMedicamentos
 {
     public class Program
@@ -13,6 +16,11 @@ namespace VendasMedicamentos
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<VendasMedicamentosContext>(options =>
+            {
+                options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
+            });
 
             var app = builder.Build();
 
