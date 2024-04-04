@@ -1,6 +1,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using VendasMedicamentos.Context;
+using VendasMedicamentos.Repository;
+using VendasMedicamentos.Repository.Interfaces;
 
 namespace VendasMedicamentos
 {
@@ -13,6 +15,8 @@ namespace VendasMedicamentos
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddScoped<IBaseRepository, BaseRepository>();
+            builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
