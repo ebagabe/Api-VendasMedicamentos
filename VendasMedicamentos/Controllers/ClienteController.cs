@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using VendasMedicamentos.Models.Dtos;
+using VendasMedicamentos.Models.Entities;
 using VendasMedicamentos.Repository.Interfaces;
 
 namespace VendasMedicamentos.Controllers
@@ -8,16 +11,18 @@ namespace VendasMedicamentos.Controllers
     public class ClienteController : ControllerBase
     {
         private readonly IClienteRepository _repository;
-        public ClienteController(IClienteRepository repository) 
+        private readonly IMapper _mapper;
+        public ClienteController(IClienteRepository repository, IMapper mapper) 
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             var clientes = await _repository.GetClientesAsync();
-           
+
             return clientes.Any()
                 ? Ok(clientes)
                 : BadRequest("Nenhum cliente encontrado");
@@ -27,8 +32,17 @@ namespace VendasMedicamentos.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var cliente = await _repository.GetClienteByIdAsync(id);
+            var clienteRetorno = _mapper.Map<ClienteDetalheDto>(cliente);
 
-            return cliente != null ? Ok(cliente) : BadRequest("Cliente não encontrado");
+            return clienteRetorno != null ? Ok(clienteRetorno) : BadRequest("Cliente não encontrado");
         }
+
+       /* [HttpPost]
+        public async Task<IActionResult> Post(ClienteAdicionarDto cliente)
+        {
+            if (cliente == null) return BadRequest("Dados invalidos");
+        }
+
+        */
     }
 }

@@ -42,7 +42,6 @@ namespace VendasMedicamentos.Migrations
                         .HasColumnName("nome");
 
                     b.Property<string>("Telefone")
-                        .IsRequired()
                         .HasColumnType("varchar(20)")
                         .HasColumnName("telefone");
 
@@ -65,7 +64,7 @@ namespace VendasMedicamentos.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("nome");
 
-                    b.Property<int>("QuantidadeEstoque")
+                    b.Property<int?>("QuantidadeEstoque")
                         .HasColumnType("integer")
                         .HasColumnName("quantidade_estoque");
 

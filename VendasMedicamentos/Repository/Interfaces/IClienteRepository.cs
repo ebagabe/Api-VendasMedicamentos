@@ -1,10 +1,11 @@
-﻿using VendasMedicamentos.Models.Entities;
+﻿using VendasMedicamentos.Models.Dtos;
+using VendasMedicamentos.Models.Entities;
 
 namespace VendasMedicamentos.Repository.Interfaces
 {
     public interface IClienteRepository : IBaseRepository
     {
-        Task<IEnumerable<Cliente>> GetClientesAsync();
+        Task<IEnumerable<ClienteDto>> GetClientesAsync();
         Task<Cliente> GetClienteByIdAsync(int id);
     }
 }

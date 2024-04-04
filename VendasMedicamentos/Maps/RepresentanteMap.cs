@@ -13,7 +13,7 @@ namespace VendasMedicamentos.Maps
             base.Configure(builder);
             builder.Property(x => x.Nome).HasColumnName("nome").HasColumnType("varchar(50)").IsRequired();
             builder.Property(x => x.Email).HasColumnName("email").HasColumnType("varchar(50)").IsRequired();
-            builder.Property(x => x.DataNascimento).HasColumnName("data_nascimento");
+            builder.Property(x => x.DataNascimento).HasColumnName("data_nascimento").IsRequired(false);
         }
     }
 }

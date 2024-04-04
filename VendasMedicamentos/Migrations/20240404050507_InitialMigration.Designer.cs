@@ -12,8 +12,8 @@ using VendasMedicamentos.Context;
 namespace VendasMedicamentos.Migrations
 {
     [DbContext(typeof(VendasMedicamentosContext))]
-    [Migration("20240404002729_MigrationTabelasInicial")]
-    partial class MigrationTabelasInicial
+    [Migration("20240404050507_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,6 @@ namespace VendasMedicamentos.Migrations
                         .HasColumnName("nome");
 
                     b.Property<string>("Telefone")
-                        .IsRequired()
                         .HasColumnType("varchar(20)")
                         .HasColumnName("telefone");
 
@@ -68,7 +67,7 @@ namespace VendasMedicamentos.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("nome");
 
-                    b.Property<int>("QuantidadeEstoque")
+                    b.Property<int?>("QuantidadeEstoque")
                         .HasColumnType("integer")
                         .HasColumnName("quantidade_estoque");
 

@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace VendasMedicamentos.Migrations
 {
     /// <inheritdoc />
-    public partial class MigrationTabelasInicial : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +20,7 @@ namespace VendasMedicamentos.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     nome = table.Column<string>(type: "varchar(50)", nullable: false),
                     email = table.Column<string>(type: "varchar(50)", nullable: false),
-                    telefone = table.Column<string>(type: "varchar(20)", nullable: false)
+                    telefone = table.Column<string>(type: "varchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -35,7 +35,7 @@ namespace VendasMedicamentos.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     nome = table.Column<string>(type: "varchar(50)", nullable: false),
                     valor = table.Column<decimal>(type: "numeric(7,2)", precision: 7, scale: 2, nullable: false),
-                    quantidadeestoque = table.Column<int>(name: "quantidade_estoque", type: "integer", nullable: false)
+                    quantidadeestoque = table.Column<int>(name: "quantidade_estoque", type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
