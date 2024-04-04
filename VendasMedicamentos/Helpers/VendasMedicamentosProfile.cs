@@ -13,6 +13,11 @@ namespace VendasMedicamentos.Helpers
             CreateMap<ClienteAdicionarDto, Cliente>();
             CreateMap<ClienteAtualizarDto, Cliente>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+            CreateMap<Representante, RepresentanteDetalheDto>();
+            CreateMap<RepresentanteAdicionarDto, Representante>();
+            CreateMap<RepresentanteAtualizarDto, Representante>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
 }

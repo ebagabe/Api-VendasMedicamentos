@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace VendasMedicamentos.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class First : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -50,7 +50,7 @@ namespace VendasMedicamentos.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     nome = table.Column<string>(type: "varchar(50)", nullable: false),
                     email = table.Column<string>(type: "varchar(50)", nullable: false),
-                    datanascimento = table.Column<DateTime>(name: "data_nascimento", type: "timestamp with time zone", nullable: true)
+                    datanascimento = table.Column<DateOnly>(name: "data_nascimento", type: "date", nullable: true)
                 },
                 constraints: table =>
                 {

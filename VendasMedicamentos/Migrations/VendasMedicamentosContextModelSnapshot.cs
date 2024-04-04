@@ -87,8 +87,8 @@ namespace VendasMedicamentos.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("DataNascimento")
-                        .HasColumnType("timestamp with time zone")
+                    b.Property<DateOnly?>("DataNascimento")
+                        .HasColumnType("date")
                         .HasColumnName("data_nascimento");
 
                     b.Property<string>("Email")

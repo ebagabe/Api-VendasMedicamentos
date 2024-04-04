@@ -80,7 +80,7 @@ namespace VendasMedicamentos.Controllers
 
             return await _repository.SaveChangesAsync()
                  ? Ok("Cliente deletado com sucesso")
-                 : BadRequest("Erro ao deletar o paciente");
+                 : BadRequest("Erro ao deletar o cliente");
         }
 
 

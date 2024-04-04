@@ -1,6 +1,6 @@
-﻿namespace VendasMedicamentos.Models.Entities
+﻿namespace VendasMedicamentos.Models.Dtos
 {
-    public class Representante : Base
+    public class RepresentanteAdicionarDto
     {
         public string Nome { get; set; }
         public string Email { get; set; }
