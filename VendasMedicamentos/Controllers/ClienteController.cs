@@ -67,6 +67,22 @@ namespace VendasMedicamentos.Controllers
                 : BadRequest("Erro ao atualizar um cliente");
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id <= 0) return BadRequest("Cliente inválido");
+
+            var clienteExclusao = await _repository.GetClienteByIdAsync(id);
+
+            if (clienteExclusao == null) return NotFound("Cliente não encontrado");
+
+            _repository.Delete(clienteExclusao);
+
+            return await _repository.SaveChangesAsync()
+                 ? Ok("Cliente deletado com sucesso")
+                 : BadRequest("Erro ao deletar o paciente");
+        }
+
 
 
     }
