@@ -10,8 +10,7 @@ namespace VendasMedicamentos.Helpers
         {
             CreateMap<Cliente, ClienteDetalheDto>();
 
-            CreateMap<Cliente, ClienteDto>();
-            CreateMap<ClienteDto, Cliente>();
+            CreateMap<ClienteAdicionarDto, Cliente>();
         }
     }
 }

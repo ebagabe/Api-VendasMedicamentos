@@ -46,7 +46,9 @@ namespace VendasMedicamentos.Controllers
 
             _repository.Add(registrarCliente);
 
-            return await _repository.SaveChangesAsync() ? Ok("Paciente registrado com sucesso") : BadRequest("Erro ao cadastrar paciente")
+            return await _repository.SaveChangesAsync() 
+                ? Ok("Paciente registrado com sucesso") 
+                : BadRequest("Erro ao cadastrar paciente");
         }
 
         
