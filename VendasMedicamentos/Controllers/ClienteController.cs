@@ -65,6 +65,12 @@ namespace VendasMedicamentos.Controllers
 
             var clienteBanco = await _repository.GetClienteByIdAsync(id);
 
+            string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            if (!Regex.IsMatch(clienteBanco.Email, emailPattern))
+            {
+                return BadRequest("O email fornecido não é válido.");
+            }
+
             var clienteAtualizar = _mapper.Map(cliente, clienteBanco);
 
             _repository.Update(clienteAtualizar);
