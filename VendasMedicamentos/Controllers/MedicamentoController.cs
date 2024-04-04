@@ -43,6 +43,8 @@ namespace VendasMedicamentos.Controllers
         {
             if (medicamento == null) return BadRequest("Dados invalidos");
 
+            if (medicamento.Valor == null || medicamento.Valor == 0) return BadRequest("Valor nao informado");
+
             var registrarMedicamento = _mapper.Map<Medicamento>(medicamento);
 
             _repository.Add(registrarMedicamento);
