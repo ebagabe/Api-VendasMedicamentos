@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 using VendasMedicamentos.Models.Dtos;
 using VendasMedicamentos.Models.Entities;
 using VendasMedicamentos.Repository.Interfaces;
@@ -41,6 +42,12 @@ namespace VendasMedicamentos.Controllers
         public async Task<IActionResult> Post(ClienteAdicionarDto cliente)
         {
             if (cliente == null) return BadRequest("Dados invalidos");
+
+            string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            if (!Regex.IsMatch(cliente.Email, emailPattern))
+            {
+                return BadRequest("O email fornecido não é válido.");
+            }
 
             var registrarCliente = _mapper.Map<Cliente>(cliente);
 
