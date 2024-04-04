@@ -14,18 +14,19 @@ namespace VendasMedicamentos.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var clientes = _repository.GetClientes();
+            var clientes = await _repository.GetClientesAsync();
+           
             return clientes.Any()
                 ? Ok(clientes)
                 : BadRequest("Nenhum cliente encontrado");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var cliente = _repository.GetClienteById(id);
+            var cliente = await _repository.GetClienteByIdAsync(id);
 
             return cliente != null ? Ok(cliente) : BadRequest("Cliente não encontrado");
         }

@@ -1,4 +1,5 @@
-﻿using VendasMedicamentos.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using VendasMedicamentos.Context;
 using VendasMedicamentos.Models.Entities;
 using VendasMedicamentos.Repository.Interfaces;
 
@@ -11,14 +12,17 @@ namespace VendasMedicamentos.Repository
         {
             _context = context;   
         }
-        public IEnumerable<Cliente> GetClientes()
+        public async Task<IEnumerable<Cliente>> GetClientesAsync()
         {
-            return _context.Clientes.ToList();
+            return await _context.Clientes
+                .ToListAsync();
         }
 
-        public Cliente GetClienteById(int id)
+        public async Task<Cliente> GetClienteByIdAsync(int id)
         {
-            return _context.Clientes.Where(x => x.Id == id).FirstOrDefault();
+            return await _context.Clientes
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
         }
     }
 }

@@ -4,7 +4,7 @@ namespace VendasMedicamentos.Repository.Interfaces
 {
     public interface IClienteRepository : IBaseRepository
     {
-        IEnumerable<Cliente> GetClientes();
-        Cliente GetClienteById(int id);
+        Task<IEnumerable<Cliente>> GetClientesAsync();
+        Task<Cliente> GetClienteByIdAsync(int id);
     }
 }
