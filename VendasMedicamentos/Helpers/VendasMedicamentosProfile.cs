@@ -23,6 +23,13 @@ namespace VendasMedicamentos.Helpers
             CreateMap<MedicamentoAdicionarDto,  Medicamento>();
             CreateMap<MedicamentoAtualizarDto,  Medicamento>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember, destMember) => srcMember != null));
+
+            CreateMap<VendaMedicamento, VendaMedicamentoDto>()
+                .ForMember(dest => dest.NomeCliente, opt => opt.MapFrom(src => src.Cliente.Nome));
+
+            CreateMap<VendaMedicamentoAdicionarDto, VendaMedicamento>();
+
+           
         }
     }
 }

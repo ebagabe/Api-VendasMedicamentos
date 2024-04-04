@@ -12,7 +12,7 @@ using VendasMedicamentos.Context;
 namespace VendasMedicamentos.Migrations
 {
     [DbContext(typeof(VendasMedicamentosContext))]
-    [Migration("20240404180138_First")]
+    [Migration("20240404200121_First")]
     partial class First
     {
         /// <inheritdoc />
@@ -109,7 +109,7 @@ namespace VendasMedicamentos.Migrations
                     b.ToTable("tb_representantes", (string)null);
                 });
 
-            modelBuilder.Entity("VendasMedicamentos.Models.Entities.Venda", b =>
+            modelBuilder.Entity("VendasMedicamentos.Models.Entities.VendaMedicamento", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -120,15 +120,23 @@ namespace VendasMedicamentos.Migrations
 
                     b.Property<int>("ClienteId")
                         .HasColumnType("integer")
-                        .HasColumnName("id_cliente");
+                        .HasColumnName("cliente_id");
+
+                    b.Property<DateTime>("DataVenda")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_venda");
 
                     b.Property<int>("MedicamentoId")
                         .HasColumnType("integer")
-                        .HasColumnName("id_medicamento");
+                        .HasColumnName("medicamento_id");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("integer")
+                        .HasColumnName("quantidade");
 
                     b.Property<int>("RepresentanteId")
                         .HasColumnType("integer")
-                        .HasColumnName("id_representante");
+                        .HasColumnName("representante_id");
 
                     b.HasKey("Id");
 
@@ -138,10 +146,10 @@ namespace VendasMedicamentos.Migrations
 
                     b.HasIndex("RepresentanteId");
 
-                    b.ToTable("tb_vendas", (string)null);
+                    b.ToTable("tb_vendas_medicamentos", (string)null);
                 });
 
-            modelBuilder.Entity("VendasMedicamentos.Models.Entities.Venda", b =>
+            modelBuilder.Entity("VendasMedicamentos.Models.Entities.VendaMedicamento", b =>
                 {
                     b.HasOne("VendasMedicamentos.Models.Entities.Cliente", "Cliente")
                         .WithMany()

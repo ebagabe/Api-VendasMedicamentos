@@ -58,59 +58,61 @@ namespace VendasMedicamentos.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tb_vendas",
+                name: "tb_vendas_medicamentos",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    idcliente = table.Column<int>(name: "id_cliente", type: "integer", nullable: false),
-                    idmedicamento = table.Column<int>(name: "id_medicamento", type: "integer", nullable: false),
-                    idrepresentante = table.Column<int>(name: "id_representante", type: "integer", nullable: false)
+                    clienteid = table.Column<int>(name: "cliente_id", type: "integer", nullable: false),
+                    medicamentoid = table.Column<int>(name: "medicamento_id", type: "integer", nullable: false),
+                    representanteid = table.Column<int>(name: "representante_id", type: "integer", nullable: false),
+                    quantidade = table.Column<int>(type: "integer", nullable: false),
+                    datavenda = table.Column<DateTime>(name: "data_venda", type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tb_vendas", x => x.id);
+                    table.PrimaryKey("PK_tb_vendas_medicamentos", x => x.id);
                     table.ForeignKey(
-                        name: "FK_tb_vendas_tb_clientes_id_cliente",
-                        column: x => x.idcliente,
+                        name: "FK_tb_vendas_medicamentos_tb_clientes_cliente_id",
+                        column: x => x.clienteid,
                         principalTable: "tb_clientes",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_tb_vendas_tb_medicamentos_id_medicamento",
-                        column: x => x.idmedicamento,
+                        name: "FK_tb_vendas_medicamentos_tb_medicamentos_medicamento_id",
+                        column: x => x.medicamentoid,
                         principalTable: "tb_medicamentos",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_tb_vendas_tb_representantes_id_representante",
-                        column: x => x.idrepresentante,
+                        name: "FK_tb_vendas_medicamentos_tb_representantes_representante_id",
+                        column: x => x.representanteid,
                         principalTable: "tb_representantes",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_vendas_id_cliente",
-                table: "tb_vendas",
-                column: "id_cliente");
+                name: "IX_tb_vendas_medicamentos_cliente_id",
+                table: "tb_vendas_medicamentos",
+                column: "cliente_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_vendas_id_medicamento",
-                table: "tb_vendas",
-                column: "id_medicamento");
+                name: "IX_tb_vendas_medicamentos_medicamento_id",
+                table: "tb_vendas_medicamentos",
+                column: "medicamento_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_vendas_id_representante",
-                table: "tb_vendas",
-                column: "id_representante");
+                name: "IX_tb_vendas_medicamentos_representante_id",
+                table: "tb_vendas_medicamentos",
+                column: "representante_id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "tb_vendas");
+                name: "tb_vendas_medicamentos");
 
             migrationBuilder.DropTable(
                 name: "tb_clientes");
