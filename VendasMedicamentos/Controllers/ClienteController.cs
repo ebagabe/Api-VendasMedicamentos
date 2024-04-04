@@ -37,12 +37,18 @@ namespace VendasMedicamentos.Controllers
             return clienteRetorno != null ? Ok(clienteRetorno) : BadRequest("Cliente não encontrado");
         }
 
-       /* [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Post(ClienteAdicionarDto cliente)
         {
             if (cliente == null) return BadRequest("Dados invalidos");
+
+            var registrarCliente = _mapper.Map<Cliente>(cliente);
+
+            _repository.Add(registrarCliente);
+
+            return await _repository.SaveChangesAsync() ? Ok("Paciente registrado com sucesso") : BadRequest("Erro ao cadastrar paciente")
         }
 
-        */
+        
     }
 }

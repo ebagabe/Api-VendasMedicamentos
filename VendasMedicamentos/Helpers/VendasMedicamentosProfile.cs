@@ -9,6 +9,9 @@ namespace VendasMedicamentos.Helpers
         public VendasMedicamentosProfile()
         {
             CreateMap<Cliente, ClienteDetalheDto>();
+
+            CreateMap<Cliente, ClienteDto>();
+            CreateMap<ClienteDto, Cliente>();
         }
     }
 }

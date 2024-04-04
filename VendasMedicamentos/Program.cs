@@ -14,7 +14,9 @@ namespace VendasMedicamentos
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                .AddJsonOptions(options => options.JsonSerializerOptions.DefaultIgnoreCondition = 
+                System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull);
             builder.Services.AddAutoMapper(typeof(Program));
             builder.Services.AddScoped<IBaseRepository, BaseRepository>();
             builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
