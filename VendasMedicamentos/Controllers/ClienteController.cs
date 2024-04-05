@@ -33,9 +33,8 @@ namespace VendasMedicamentos.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var cliente = await _repository.GetClienteByIdAsync(id);
-            var clienteRetorno = _mapper.Map<ClienteDetalheDto>(cliente);
 
-            return clienteRetorno != null ? Ok(clienteRetorno) : BadRequest("Cliente nao encontrado");
+            return cliente != null ? Ok(cliente) : BadRequest("Cliente nao encontrado");
         }
 
         [HttpPost]
