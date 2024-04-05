@@ -39,20 +39,20 @@ namespace Api.Tests
             var clienteEsperado = new Cliente { Id = clienteId, Nome = "Cliente Teste", Email = "email@teste.com" };
             mockRepository.Setup(repo => repo.GetClienteByIdAsync(clienteId)).ReturnsAsync(clienteEsperado);
 
-            var controlador = new ClienteController(mockRepository.Object, mockMapper.Object);
+            var controller = new ClienteController(mockRepository.Object, mockMapper.Object);
 
-            var resultadoAcao = await controlador.GetById(clienteId);
+            var result = await controller.GetById(clienteId);
 
-            Assert.IsType<OkObjectResult>(resultadoAcao);
-            var resultadoOk = resultadoAcao as OkObjectResult;
-            Assert.NotNull(resultadoOk);
+            Assert.IsType<OkObjectResult>(result);
+            var resultOk = result as OkObjectResult;
+            Assert.NotNull(resultOk);
             
-            var clienteRetornado = resultadoOk.Value as Cliente;
-            Assert.NotNull(clienteRetornado);
+            var clientReturn = resultOk.Value as Cliente;
+            Assert.NotNull(clientReturn);
            
-            Assert.Equal(clienteEsperado.Id, clienteRetornado.Id);
-            Assert.Equal(clienteEsperado.Nome, clienteRetornado.Nome);
-            Assert.Equal(clienteEsperado.Email, clienteRetornado.Email);
+            Assert.Equal(clienteEsperado.Id, clientReturn.Id);
+            Assert.Equal(clienteEsperado.Nome, clientReturn.Nome);
+            Assert.Equal(clienteEsperado.Email, clientReturn.Email);
         }
 
         [Fact]
@@ -65,12 +65,12 @@ namespace Api.Tests
 
             mockRepository.Setup(repo => repo.GetClienteByIdAsync(clienteId)).ReturnsAsync((Cliente)null);
 
-            var controlador = new ClienteController(mockRepository.Object, mockMapper.Object);
+            var controller = new ClienteController(mockRepository.Object, mockMapper.Object);
         
-            var resultadoAcao = await controlador.GetById(clienteId);
+            var result = await controller.GetById(clienteId);
 
-            Assert.IsType<BadRequestObjectResult>(resultadoAcao);
-            var resultadoBadRequest = resultadoAcao as BadRequestObjectResult;
+            Assert.IsType<BadRequestObjectResult>(result);
+            var resultadoBadRequest = result as BadRequestObjectResult;
             Assert.NotNull(resultadoBadRequest);
             Assert.Equal("Cliente nao encontrado", resultadoBadRequest.Value);
         }
@@ -123,10 +123,8 @@ namespace Api.Tests
             var mockMapper = new Mock<IMapper>();
             var controller = new ClienteController(mockRepository.Object, mockMapper.Object);
 
-            
             var result = await controller.Put(0, null);
 
-            
             Assert.IsType<BadRequestObjectResult>(result);
         }
 
@@ -144,10 +142,8 @@ namespace Api.Tests
             var mockMapper = new Mock<IMapper>();
             var controller = new ClienteController(mockRepository.Object, mockMapper.Object);
 
-            
             var result = await controller.Put(clienteId, clienteAtualizarDto);
 
-            
             Assert.IsType<BadRequestObjectResult>(result);
         }
 
